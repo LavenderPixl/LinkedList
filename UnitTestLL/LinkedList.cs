@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,52 +9,67 @@ namespace UnitTestLL
 {
     public class LinkedList
     {
-        Element _baseElement = new(0, null);
-        public void Add_First(Element _first, Element _newElement)
+        public Element _baseElement;
+        public void Add_First(object _newData)
         {
-            _newElement.Next = _first.Next;
-            _first.Next = _newElement;
-            Console.WriteLine(_first.Data.ToString(), _newElement.Data.ToString());
+            Element _newElement = new(_newData, _baseElement);
+            _baseElement = _newElement;
         }
 
-        public void Remove_First(Element _baseElement, Element _firstElement)
+        public void Remove_First()
         {
-            _baseElement.Next = _firstElement.Next;
+            _baseElement = _baseElement.Next;
         }
 
-        public int Count(Element _startElement)
+        public int Count()
         {
-
-            int _counter = 1;
-            do
+            if (_baseElement == null)
             {
-                _startElement = _startElement.Next;
-                _counter++;
-            } while (_startElement.Next != null);
+                return 0;
+            }
+            else
+            {
+                int _counter = 0;
+                Element _tempElement = _baseElement;
 
-            return _counter;
+                while (_tempElement.Next != null)
+                {
+                    _counter++;
+
+                    if (_tempElement.Next != null)
+                    {
+                        _tempElement = _tempElement.Next;
+                    }
+                }
+
+                return ++_counter;
+            }
         }
 
-        public string To_String(Element _startElement)
+        public string To_String()
         {
             string _resultString = "";
-
-            while (_startElement != null)
+            if (_baseElement == null)
             {
-                _resultString += _startElement.Data.ToString() + ", ";
-                Console.Write(_startElement.Data + ", ");
-                _startElement = _startElement.Next;
+                return "Empty.";
+            }
+            else
+            {
+                Element _tempElement = _baseElement;
+                while (_tempElement != null)
+                {
+                    _resultString += _tempElement.Data.ToString() + ", ";
+                    _tempElement = _tempElement.Next;
+                }
             }
 
             return _resultString;
         }
 
-        public void Sort(Element _startElement)
+        public void Sort()
         {
-
-            Element _swapElement = _startElement;
+            Element _swapElement = _baseElement;
             int _position;
-            //string _resultString = "Error! Help. ";
 
             while (_swapElement != null)
             {

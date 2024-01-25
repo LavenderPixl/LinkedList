@@ -10,77 +10,70 @@ namespace XUnitTests
         [Fact]
         public void AddFirst()
         {
-            Element _startElement = new(0, null);
-            Element _secondElement = new(521, null);
-            Element _thirdElement = new(3, null);
-            _startElement.Next = _secondElement;
-            _secondElement.Next = _thirdElement;
+            LL.Add_First(2501);
 
-            Element _newElement = new(2501, null);
-
-
-            LL.Add_First(_startElement, _newElement);
-
-            Assert.True(_startElement.Next == _newElement);
-            Assert.True(_newElement.Next == _secondElement);
+            Assert.Equal(2501, Convert.ToInt32(LL._baseElement.Data));
         }
 
         [Fact]
         public void RemoveFirst()
         {
-            //Three Elements added.
-            Element _startElement = new(0, null);
-            Element _firstElement = new(23, null);
-            Element _secondElement = new(212, null);
-            _startElement.Next = _firstElement;
-            _firstElement.Next = _secondElement;
+            LL.Add_First(231);
+            LL.Add_First(1);
 
             //Remove test.
-            LL.Remove_First(_startElement, _firstElement);
+            LL.Remove_First();
 
-            Assert.True(_startElement.Next == _secondElement);
+            Assert.Equal(231, Convert.ToInt32(LL._baseElement.Data));
         }
 
         [Fact]
         public void Count()
         {
-            Element _startElement = new(0, null);
-            Element _firstElement = new(23, null);
-            Element _secondElement = new(212, null);
-            _startElement.Next = _firstElement;
-            _firstElement.Next = _secondElement;
-
-            int _counter = LL.Count(_startElement);
+            LL.Add_First(31);
+            LL.Add_First(31);
+            LL.Add_First(31);
+            int _counter = LL.Count();
 
             Assert.Equal(3, _counter);
+        }
+        [Fact]
+        public void CountEmpty()
+        {
+            int _counter = LL.Count();
+
+            Assert.Equal(0, _counter);
         }
 
         [Fact]
         public void To_String()
         {
-            Element _startElement = new(0, null);
-            Element _firstElement = new(23, null);
-            Element _secondElement = new(212, null);
-            _startElement.Next = _firstElement;
-            _firstElement.Next = _secondElement;
+            LL.Add_First(312);
+            LL.Add_First(12);
+            LL.Add_First(72);
+            string _result = LL.To_String();
 
-            string _result = LL.To_String(_startElement);
-
-            Assert.Equal("0, 23, 212, ", _result);
+            Assert.Equal("72, 12, 312, ", _result);
         }
 
         [Fact]
         public void Sort()
         {
-            Element _startElement = new(0, null);
-            Element _firstElement = new(23111, null);
-            Element _secondElement = new(212, null);
-            _startElement.Next = _firstElement;
-            _firstElement.Next = _secondElement;
+            LL.Add_First(1222);
+            LL.Add_First(2);
+            LL.Add_First(12);
 
-            LL.Sort(_startElement);
-            string _sortedList = LL.To_String(_startElement);
-            Assert.Equal("0, 212, 23111, ", _sortedList);
+            LL.Sort();
+            string _sortedList = LL.To_String();
+            Assert.Equal("2, 12, 1222, ", _sortedList);
+        }
+
+        [Fact]
+        public void SortEmpty()
+        {
+            LL.Sort();
+            string _sortedList = LL.To_String();
+            Assert.Equal("Empty.", _sortedList);
         }
     }
 }

@@ -8,14 +8,11 @@ namespace UnitTestLL
 {
     public class Element
     {
-        public Object Data;
-        public Element? Next;
+        public Object Data { get; set; }
+        public Element? Next { get; set; }
 
-        public Element()
-        {
-            
-        }
-        public Element(Object data, Element next)
+
+        public Element(Object? data, Element? next)
         {
             Data = data;
             Next = next;
