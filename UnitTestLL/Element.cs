@@ -8,8 +8,8 @@ namespace UnitTestLL
 {
     public class Element
     {
-        Object Data;
-        Element Next;
+        public Object Data;
+        public Element Next;
 
         public Element()
         {

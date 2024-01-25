@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UnitTestLL\UnitTestLL.csproj" />
+  </ItemGroup>
+
 </Project>
