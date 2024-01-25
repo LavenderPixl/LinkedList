@@ -9,7 +9,7 @@ namespace UnitTestLL
     public class Element
     {
         public Object Data;
-        public Element Next;
+        public Element? Next;
 
         public Element()
         {
