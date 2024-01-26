@@ -6,16 +6,9 @@ using System.Threading.Tasks;
 
 namespace UnitTestLL
 {
-    public class Element
+    public class Element(Object? data, Element? next)
     {
-        public Object Data { get; set; }
-        public Element? Next { get; set; }
-
-
-        public Element(Object? data, Element? next)
-        {
-            Data = data;
-            Next = next;
-        }
+        public Object? Data { get; set; } = data;
+        public Element? Next { get; set; } = next;
     }
 }

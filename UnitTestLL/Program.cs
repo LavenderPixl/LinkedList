@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            LinkedList LL = new LinkedList();
+            LinkedList LL = new();
 
             LL.Add_First(132);
             Console.WriteLine(LL._baseElement.Data);

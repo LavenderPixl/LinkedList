@@ -9,7 +9,7 @@ namespace UnitTestLL
 {
     public class LinkedList
     {
-        public Element _baseElement;
+        public Element? _baseElement;
         public void Add_First(object _newData)
         {
             Element _newElement = new(_newData, _baseElement);
@@ -55,10 +55,13 @@ namespace UnitTestLL
             }
             else
             {
-                Element _tempElement = _baseElement;
+                Element? _tempElement = _baseElement;
                 while (_tempElement != null)
                 {
-                    _resultString += _tempElement.Data.ToString() + ", ";
+                    if (_tempElement.Data != null)
+                    {
+                        _resultString += _tempElement.Data.ToString() + ", ";
+                    }
                     _tempElement = _tempElement.Next;
                 }
             }
@@ -68,21 +71,41 @@ namespace UnitTestLL
 
         public void Sort()
         {
-            Element _swapElement = _baseElement;
-            int _position;
+            Element? _swapElement = _baseElement;
+            bool _notFullySorted = true;
 
             while (_swapElement != null)
             {
-                if (_swapElement.Next != null)
+                if (_notFullySorted)
                 {
                     if (Convert.ToInt32(_swapElement.Data) > Convert.ToInt32(_swapElement.Next.Data))
                     {
-                        (_swapElement.Data, _swapElement.Next.Data) = (_swapElement.Next.Data, _swapElement.Data);
+
                     }
                 }
-                _swapElement = _swapElement.Next;
             }
-            //return _resultString;
         }
+
+
+        //public void Sort()
+        //{
+        //    Element? _swapElement = _baseElement;
+        //    bool _swapped = false;
+        //    int _position;
+
+        //    while (_swapElement != null)
+        //    {
+        //        if (_swapElement.Next != null)
+        //        {
+        //            if (Convert.ToInt32(_swapElement.Data) > Convert.ToInt32(_swapElement.Next.Data))
+        //            {
+        //                (_swapElement.Data, _swapElement.Next.Data) = (_swapElement.Next.Data, _swapElement.Data);
+        //                _swapped = true;
+        //            }
+        //            _swapElement = _swapElement.Next;
+        //        }
+        //    }
+        //    //return _resultString;
+        //}
     }
 }
